@@ -63,14 +63,17 @@ These requirements define the **quality attributes, performance standards, and o
 ## 6. Security and Data Privacy
 
 - **End-to-End Encryption**:  
-  Protect all communications and stored data using industry-standard encryption (e.g., TLS for transit, AES for storage).
+  Protect all communications and stored data using industry-standard encryption.
+  Use TLS (Transport Layer Security) to protect data while it’s being sent over the internet (in transit). 
+  Use AES (Advanced Encryption Standard) to protect data when it’s saved on disks or databases (at rest).
 
 - **Role-Based Access Control (RBAC)**:  
-  Assign permissions based on user type (student, teacher, parent, admin) to minimize security risks.
-
+  Give different users different levels of access depending on their role (like Author, Reviewer, Parent, Admin) to keep the system secure and limit what each person can do.
 ---
 
 ## 7. Accessibility (WCAG 2.0 Compliance)
+
+The purpose of WCAG 2.0 (**Web Content Accessibility Guidelines version 2.0**) Compliance is to make sure that everyone, including people with disabilities, can easily use and understand your website or app.
 
 - **Screen Reader Support**:  
   Compatible with assistive software that audibly reads on-screen text and describes elements for visually impaired users.
@@ -113,7 +116,4 @@ These requirements define the **quality attributes, performance standards, and o
 
 - **Multi-Language Interface**:  
   Support for multiple languages, with correct formatting for dates, numbers, and text direction (e.g., right-to-left for Arabic).
-
-- **Culturally Relevant Content**:  
-  Adapt lesson content to align with local customs, names, and cultural contexts.
 
