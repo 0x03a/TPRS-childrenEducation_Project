@@ -59,8 +59,6 @@ The platform must support four types of logins with distinct access rights:
 - **Gamification**:  
   The system must incorporate badges, points, levels, and streak counters to reward consistency and achievements.
 
-- **Parent or Teacher/Student Engagement Tracking**:  
-  Parents or Teachers should have access to a detailed dashboard showing student progress, quiz results, activity history, and engagement statistics.
 
 ---
 
@@ -124,8 +122,8 @@ Adjust stories, examples, and cultural references so they match the culture and 
 
 ## 9. Data Usage and AI Training
 
-- **Anonymization**:  
-  All AI training data must be stripped of personally identifiable information (PII) and aggregated to ensure privacy.
+- **Anonymization**: 
+  Make sure all data used to train the AI does not include any personal details that can identify someone, and combine data so individuals can’t be singled out.
 
 - **Restricted Use**:  
   AI insights are strictly for learning optimization and must not be shared with third parties.
