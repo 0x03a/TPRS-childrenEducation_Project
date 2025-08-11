@@ -116,4 +116,21 @@ The purpose of WCAG 2.0 (**Web Content Accessibility Guidelines version 2.0**) C
 
 - **Multi-Language Interface**:  
   Support for multiple languages, with correct formatting for dates, numbers, and text direction (e.g., right-to-left for Arabic).
+  
+## 11. Module Isolation
+
+- **Independent Server per Module**:  
+  Each major module of the platform will be deployed on a separate server or isolated service environment.  
+  This ensures:
+    - No single point of failure for all modules.
+    - Scalability: Modules can be scaled independently based on usage.
+    - Maintenance Flexibility: Updates or fixes to one module do not require downtime for the others.
+    - Fault Containment: If one module encounters issues, other modules remain operational.
+
+- **Example**:  
+  - **Story Generation Module** — Runs on its own server.
+  - **User Management Module** — Separate service.
+  - **Quiz/Practice Module** — Isolated from other modules.
+  - **Offline Sync Module** — Dedicated service for caching and synchronization.
+
 
