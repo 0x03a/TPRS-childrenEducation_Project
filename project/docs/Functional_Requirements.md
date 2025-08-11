@@ -80,7 +80,9 @@ The platform must support four types of logins with distinct access rights:
   The interface and learning content must be available in multiple languages (e.g., Arabic, English, Spanish), with an easy toggle option.
 
 - **Localized Content**:  
-  Stories, examples, and cultural references should be adapted for relevance to different regions and dialects (e.g., Palestinian Arabic vs. Egyptian Arabic).
+Adjust stories, examples, and cultural references so they match the culture and way of speaking in a specific place or dialect.
+**Example:** A joke that makes sense in Palestinian Arabic might be rewritten so it makes sense in Egyptian Arabic.
+
 
 ---
 
