@@ -1,0 +1,1113 @@
+/* StoryLand Adventures - Child-Friendly PWA Styles */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap');
+
+/* Custom Properties - Forest-Inspired Color Scheme */
+:root {
+    /* Primary Colors - Inspired by the forest scene */
+    --forest-green: #2D5A27;      /* Dark forest green from trees */
+    --sage-green: #7FB069;        /* Light sage green from grass */
+    --warm-brown: #8B4513;        /* Warm brown from cabin logs */
+    --earth-orange: #D2691E;      /* Earthy orange from cabin roof */
+    --sky-blue: #87CEEB;          /* Bright sky blue from background */
+    --cloud-white: #F8F8FF;       /* Soft white from clouds */
+    --sunny-yellow: #FFD700;      /* Warm yellow from sunlight */
+    --path-brown: #CD853F;        /* Path brown from dirt path */
+    
+    /* Accent Colors */
+    --accent-pink: #FF6B9D;       /* Soft pink for highlights */
+    --accent-purple: #9B6B9B;     /* Muted purple for variety */
+    --accent-blue: #6B9BFF;       /* Bright blue for buttons */
+    --accent-green: #10B981;
+    --accent-red: #EF4444;
+    --text-dark: #1F2937;
+    --text-light: #F8F8F8;        /* Light text for contrast */
+    --card-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    --overlay-bg: rgba(45, 90, 39, 0.8); /* Forest green overlay */
+    
+    /* Shadows */
+    --shadow-light: 0 4px 6px -1px rgba(45, 90, 39, 0.1);
+    --shadow-medium: 0 10px 15px -3px rgba(45, 90, 39, 0.15);
+    --shadow-heavy: 0 25px 50px -12px rgba(45, 90, 39, 0.25);
+    
+    /* Border Radius */
+    --border-radius-small: 1rem;
+    --border-radius-medium: 1.5rem;
+    --border-radius-large: 2rem;
+    --border-radius-xl: 3rem;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, var(--sky-blue) 0%, var(--sage-green) 50%, var(--forest-green) 100%);
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Forest Background Image */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* Fallback to local image if available */
+       
+        /* Online forest image */
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+    filter: brightness(1.2) contrast(1.1) saturate(1.3) hue-rotate(5deg);
+}
+
+/* Alternative: If you want to use a different forest image, you can replace the URL above with:
+   - A local image: url('./images/your-forest-image.jpg')
+   - Another online image: url('https://your-image-url.com/forest.jpg')
+   - Or create a simple CSS forest pattern as fallback
+*/
+
+/* CSS Forest Pattern Fallback */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        /* Sky gradient */
+        linear-gradient(to bottom, 
+            #87CEEB 0%, 
+            #B0E0E6 30%, 
+            #F0F8FF 60%, 
+            #FFFFFF 100%),
+        /* Forest pattern */
+        radial-gradient(ellipse at 20% 80%, #2D5A27 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, #2D5A27 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 90%, #7FB069 0%, transparent 60%),
+        /* Tree trunks */
+        linear-gradient(90deg, 
+            transparent 0%, 
+            #8B4513 2%, 
+            transparent 4%, 
+            #8B4513 6%, 
+            transparent 8%, 
+            #8B4513 10%, 
+            transparent 12%, 
+            #8B4513 14%, 
+            transparent 16%, 
+            #8B4513 18%, 
+            transparent 20%, 
+            #8B4513 22%, 
+            transparent 24%, 
+            #8B4513 26%, 
+            transparent 28%, 
+            #8B4513 30%, 
+            transparent 32%, 
+            #8B4513 34%, 
+            transparent 36%, 
+            #8B4513 38%, 
+            transparent 40%, 
+            #8B4513 42%, 
+            transparent 44%, 
+            #8B4513 46%, 
+            transparent 48%, 
+            #8B4513 50%, 
+            transparent 52%, 
+            #8B4513 54%, 
+            transparent 56%, 
+            #8B4513 58%, 
+            transparent 60%, 
+            #8B4513 62%, 
+            transparent 64%, 
+            #8B4513 66%, 
+            transparent 68%, 
+            #8B4513 70%, 
+            transparent 72%, 
+            #8B4513 74%, 
+            transparent 76%, 
+            #8B4513 78%, 
+            transparent 80%, 
+            #8B4513 82%, 
+            transparent 84%, 
+            #8B4513 86%, 
+            transparent 88%, 
+            #8B4513 90%, 
+            transparent 92%, 
+            #8B4513 94%, 
+            transparent 96%, 
+            #8B4513 98%, 
+            transparent 100%);
+    background-size: 100% 100%, 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+    background-position: center, center, center, center, center;
+    opacity: 0.3;
+    z-index: -2;
+    display: none; /* Hidden by default, shown only if image fails */
+}
+
+/* Show CSS forest pattern if image fails to load */
+@media (max-width: 768px) {
+    body::before {
+        opacity: 0.6; /* Slightly more visible on mobile */
+    }
+}
+
+/* Fallback for very slow connections or when images fail */
+body.no-image::before {
+    display: none;
+}
+
+body.no-image::after {
+    display: block;
+}
+
+/* Floating Background Elements - Adjusted for forest theme */
+.floating-element {
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.8;
+    filter: drop-shadow(0 4px 8px rgba(45, 90, 39, 0.3));
+}
+
+.floating-element:nth-child(2) { animation-delay: 1s; }
+.floating-element:nth-child(3) { animation-delay: 2s; }
+.floating-element:nth-child(4) { animation-delay: 3s; }
+.floating-element:nth-child(5) { animation-delay: 4s; }
+.floating-element:nth-child(6) { animation-delay: 5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(5deg); }
+    66% { transform: translateY(10px) rotate(-5deg); }
+}
+
+/* Navigation Styles - Forest-inspired */
+.nav-btn {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--sage-green);
+    background: rgba(127, 176, 105, 0.3);
+}
+
+/* Top Navigation Bar - Forest theme */
+nav.fixed.top-0 {
+    background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 50%, var(--warm-brown) 100%) !important;
+    border-bottom: 4px solid var(--earth-orange) !important;
+}
+
+/* Bottom Navigation - Forest theme */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-small);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: var(--text-dark);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+}
+
+.nav-item:hover {
+    color: var(--forest-green);
+    transform: translateY(-2px);
+    border-color: var(--sage-green);
+}
+
+.nav-item.active {
+    color: var(--forest-green);
+    background: linear-gradient(135deg, var(--sage-green), var(--accent-green));
+    transform: translateY(-2px);
+    border-color: var(--forest-green);
+}
+
+/* Action Buttons - Forest-inspired gradients */
+.action-btn {
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.action-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    border-color: var(--sage-green);
+    box-shadow: var(--shadow-heavy);
+}
+
+/* Story Cards - Forest theme */
+.story-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 200px;
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    border: 4px solid var(--sage-green) !important;
+}
+
+.story-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--forest-green) !important;
+}
+
+/* Filter Buttons - Forest theme */
+.filter-btn {
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--sage-green);
+}
+
+.filter-btn.active {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--forest-green);
+}
+
+/* Control Buttons - Forest theme */
+.control-btn {
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--sage-green);
+    box-shadow: var(--shadow-heavy);
+}
+
+/* Back Button - Forest theme */
+.back-btn {
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--sage-green);
+}
+
+/* Close Button - Forest theme */
+.close-btn {
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.close-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--sage-green);
+}
+
+/* Progress Bar - Forest theme */
+#audioProgress {
+    transition: width 0.1s ease;
+    background: linear-gradient(135deg, var(--sage-green), var(--forest-green)) !important;
+}
+
+/* Story Content - Enhanced readability */
+#storyContent {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Vocabulary Cards - Forest theme */
+.vocabulary-card {
+    background: linear-gradient(135deg, var(--sage-green), var(--accent-green)) !important;
+    border: 3px solid var(--forest-green) !important;
+    border-radius: var(--border-radius-medium);
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.vocabulary-card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Modal Animations - Enhanced */
+.modal-enter {
+    animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Button Press Effect */
+.btn-press {
+    animation: buttonPress 0.1s ease-out;
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Word Highlighting - Forest theme */
+.word-highlight {
+    background: linear-gradient(135deg, var(--sage-green), var(--accent-green)) !important;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.125rem;
+    display: inline-block;
+    animation: wordPop 0.3s ease-out;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+@keyframes wordPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Shimmer Effect - Forest theme */
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(127, 176, 105, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Dashboard Bar - Forest theme */
+#dashboardBar {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--sage-green) !important;
+}
+
+/* Progress Modal - Forest theme */
+#progressModal .bg-white {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(15px);
+    border: 4px solid var(--sage-green) !important;
+}
+
+/* Auth Modal - Forest theme */
+#authModal .bg-white {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(15px);
+    border: 4px solid var(--sage-green) !important;
+}
+
+/* Story Reader - Forest theme */
+#storyReader .bg-white {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(15px);
+    border: 4px solid var(--sage-green) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .floating-element {
+        font-size: 2rem !important;
+        opacity: 0.6;
+    }
+    
+    .action-btn {
+        font-size: 1.25rem !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+    
+    .story-card {
+        min-width: 150px;
+    }
+    
+    .control-btn {
+        font-size: 1.5rem !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+    
+    #playPause {
+        font-size: 2.5rem !important;
+        padding: 1rem 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-element {
+        display: none;
+    }
+    
+    .action-btn {
+        font-size: 1.125rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    .story-card {
+        min-width: 120px;
+        padding: 0.75rem !important;
+    }
+    
+    .control-btn {
+        font-size: 1.25rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    #playPause {
+        font-size: 2rem !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+}
+
+/* Focus Styles for Accessibility */
+button:focus,
+input:focus {
+    outline: 3px solid var(--sage-green);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar - Forest theme */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sage-green);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--forest-green), var(--warm-brown));
+    border-radius: 6px;
+    border: 2px solid var(--sage-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--warm-brown), var(--earth-orange));
+}
+
+/* Loading States - Forest theme */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--sage-green);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success States - Forest theme */
+.success {
+    animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Error States - Forest theme */
+.error {
+    animation: errorShake 0.5s ease-out;
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Print Styles */
+@media print {
+    .floating-element,
+    .nav-btn,
+    .action-btn,
+    .control-btn,
+    .back-btn,
+    .close-btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    body::before {
+        display: none !important;
+    }
+} 
+
+/* ===== GLOBAL SMOOTH SCROLLING & TRANSITIONS ===== */
+
+/* Enable smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for all scrollable elements */
+* {
+    scroll-behavior: smooth;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Specific smooth transitions for different properties */
+button, a, .nav-btn, .action-btn, .story-card, .filter-btn, .control-btn, .back-btn, .close-btn {
+    transition: 
+        all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth hover effects */
+button:hover, a:hover, .nav-btn:hover, .action-btn:hover, .story-card:hover, .filter-btn:hover, .control-btn:hover, .back-btn:hover, .close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth active/pressed states */
+button:active, a:active, .nav-btn:active, .action-btn:active, .story-card:active, .filter-btn:active, .control-btn:active, .back-btn:active, .close-btn:active {
+    transform: translateY(0);
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth focus transitions */
+button:focus, a:focus, input:focus, .nav-btn:focus, .action-btn:focus, .story-card:focus, .filter-btn:focus, .control-btn:focus, .back-btn:focus, .close-btn:focus {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth modal animations */
+.modal-enter {
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.modal-exit {
+    animation: modalSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Smooth page transitions */
+.page-transition {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scrolling for story content */
+.story-content, .vocabulary-list {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+}
+
+/* Smooth audio progress bar */
+.audio-progress {
+    transition: width 0.1s linear;
+}
+
+/* Smooth floating elements */
+.floating-element {
+    animation: float 6s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth card hover effects */
+.story-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth navigation transitions */
+.nav-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover {
+    transform: translateY(-3px);
+    background-color: var(--accent-blue);
+}
+
+.nav-item.active {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth button press animations */
+.btn-press {
+    animation: buttonPress 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Smooth loading states */
+.loading {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth text highlighting */
+.word-highlight {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth star animations */
+.star-animation {
+    animation: starPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ===== ANIMATION KEYFRAMES ===== */
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    66% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes starPop {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--card-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    transform: scale(1.1);
+}
+
+/* Firefox scrollbar styling */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-blue) var(--card-bg);
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Enable hardware acceleration for smooth animations */
+.floating-element, .story-card, .nav-btn, .action-btn, .control-btn {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Smooth scrolling for iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+    .story-content, .vocabulary-list, body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ===== RESPONSIVE SMOOTH SCROLLING ===== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    /* Faster transitions on mobile for better performance */
+    * {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Optimize touch scrolling */
+    .story-content, .vocabulary-list {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Reduce animation complexity on mobile */
+    .floating-element {
+        animation: float 8s ease-in-out infinite;
+    }
+}
+
+/* High-end device optimizations */
+@media (min-width: 1200px) {
+    /* Enable more complex animations on powerful devices */
+    .floating-element {
+        animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Smoother transitions on high-end devices */
+    * {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+} 
+
+/* ===== AUTH MODAL STYLES ===== */
+
+/* Tab Navigation */
+#loginTab, #signupTab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 2px solid transparent;
+}
+
+#loginTab:hover, #signupTab:hover {
+    background-color: rgba(107, 155, 255, 0.1);
+    border-radius: 8px 8px 0 0;
+}
+
+#loginTab.border-accent-blue, #signupTab.border-accent-blue {
+    border-bottom-color: var(--accent-blue);
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* Auth Modal Inputs */
+#authModal input, #authModal select {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--accent-blue);
+}
+
+#authModal input:focus, #authModal select:focus {
+    border-color: var(--forest-green);
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Auth Modal Buttons */
+#authModal button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#authModal button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Auth Message */
+#authMessage {
+    animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Backdrop */
+#authModal {
+    backdrop-filter: blur(8px);
+}
+
+#authModal .bg-card-bg {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+} 
+
+/* ===== NAVIGATION BUTTONS ===== */
+
+/* Login Button */
+#navLoginBtn.nav-btn {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)) !important;
+    border: 2px solid var(--accent-blue) !important;
+    box-shadow: 0 4px 15px rgba(107, 155, 255, 0.3);
+}
+
+#navLoginBtn.nav-btn:hover {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 155, 255, 0.4);
+}
+
+/* Sign Up Button */
+#navSignupBtn.nav-btn {
+    background: linear-gradient(135deg, var(--sage-green), var(--forest-green)) !important;
+    border: 2px solid var(--sage-green) !important;
+    box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+}
+
+#navSignupBtn.nav-btn:hover {
+    background: linear-gradient(135deg, var(--forest-green), var(--sage-green)) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.4);
+}
+
+/* Button States */
+#navLoginBtn.nav-btn:active, #navSignupBtn.nav-btn:active {
+    transform: translateY(0);
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+} 
+
+/* ===== LANGUAGE SUPPORT ===== */
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .flex {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .space-x-3 > * + * {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+[dir="rtl"] .space-x-4 > * + * {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] .space-x-6 > * + * {
+    margin-left: 0;
+    margin-right: 1.5rem;
+}
+
+[dir="rtl"] .ml-2 {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+[dir="rtl"] .ml-4 {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] .mr-2 {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+[dir="rtl"] .mr-4 {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+[dir="rtl"] .pl-4 {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+[dir="rtl"] .pr-4 {
+    padding-right: 0;
+    padding-left: 1rem;
+}
+
+[dir="rtl"] .px-4 {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+}
+
+[dir="rtl"] .px-6 {
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+}
+
+[dir="rtl"] .px-8 {
+    padding-left: 1.5rem;
+    padding-right: 2rem;
+}
+
+/* Language Toggle Button */
+#languageToggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+#languageToggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Arabic Font Support */
+[lang="ar"] {
+    font-family: 'Arial', 'Tahoma', sans-serif;
+}
+
+[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+    font-family: 'Arial', 'Tahoma', sans-serif;
+    font-weight: bold;
+}
+
+/* Smooth language transition */
+[data-lang] {
+    transition: all 0.3s ease;
+} 
+
+/* Filter buttons */
+.filter-btn {
+    @apply text-gray-600 hover:text-gray-800 transition-colors;
+}
+
+.filter-btn.active {
+    @apply bg-blue-500 text-white;
+}
+
+/* Story cards */
+.story-card {
+    @apply transition-all duration-300 hover:scale-105;
+}
+
+.story-card:hover {
+    @apply shadow-2xl;
+}
+
+/* Audio controls */
+#playPauseBtn {
+    @apply transition-all duration-200;
+}
+
+#playPauseBtn:hover {
+    @apply transform scale-105;
+}
+
+/* Word highlighting animation */
+@keyframes wordHighlight {
+    0% { background-color: rgba(255, 255, 0, 0.3); }
+    50% { background-color: rgba(255, 255, 0, 0.7); }
+    100% { background-color: rgba(255, 255, 0, 0.3); }
+}
+
+.word-highlight {
+    animation: wordHighlight 1s ease-in-out infinite;
+}
+
+/* Profile page styles */
+#profilePage .stats-card {
+    @apply transition-all duration-300 hover:scale-105;
+}
+
+/* Progress modal */
+#progressModal {
+    @apply transition-all duration-300;
+}
+
+/* Auth modal animations */
+.modal-enter {
+    animation: modalEnter 0.3s ease-out;
+}
+
+@keyframes modalEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+} 

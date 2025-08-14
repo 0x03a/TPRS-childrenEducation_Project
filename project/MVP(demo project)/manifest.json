@@ -1,0 +1,24 @@
+{
+  "name": "StoryLand Adventures",
+  "short_name": "StoryLand",
+  "description": "Interactive storytelling app for children aged 4-10",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7FB069",
+  "theme_color": "#2D5A27",
+  "orientation": "portrait-primary",
+  "categories": ["education", "entertainment", "kids"],
+  "lang": "en",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Start Reading",
+      "short_name": "Read",
+      "description": "Start reading stories",
+      "url": "/",
+      "icons": []
+    }
+  ],
+  "screenshots": [],
+  "icons": []
+} 

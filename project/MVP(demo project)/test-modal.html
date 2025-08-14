@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none !important; }
+        .modal-enter { animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold mb-8">Modal Test Page</h1>
+    
+    <!-- Test Button -->
+    <button id="testBtn" class="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
+        Test Modal
+    </button>
+    
+    <!-- Auth Modal -->
+    <div id="authModal" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Test Modal</h3>
+                <button id="closeBtn" class="text-2xl hover:scale-110">×</button>
+            </div>
+            <p>This is a test modal to verify functionality.</p>
+        </div>
+    </div>
+    
+    <script>
+        const modal = document.getElementById('authModal');
+        const testBtn = document.getElementById('testBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        
+        function openModal() {
+            console.log('Opening modal...');
+            modal.classList.remove('hidden');
+            modal.classList.add('modal-enter');
+            console.log('Modal opened');
+        }
+        
+        function closeModal() {
+            console.log('Closing modal...');
+            modal.classList.add('hidden');
+            modal.classList.remove('modal-enter');
+            console.log('Modal closed');
+        }
+        
+        testBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        
+        console.log('Test page loaded');
+    </script>
+</body>
+</html> 

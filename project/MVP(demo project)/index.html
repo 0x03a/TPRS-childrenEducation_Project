@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2D5A27">
+    <meta name="description" content="Interactive storytelling app for children aged 4-10">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN (for demo purposes - use local installation for production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forest-green': '#2D5A27',
+                        'sage-green': '#7FB069',
+                        'warm-brown': '#8B4513',
+                        'earth-orange': '#D2691E',
+                        'sky-blue': '#87CEEB',
+                        'cloud-white': '#F8F8FF',
+                        'sunny-yellow': '#FFD700',
+                        'path-brown': '#CD853F',
+                        'accent-pink': '#FF6B9D',
+                        'accent-purple': '#9B6B9B',
+                        'accent-blue': '#6B9BFF',
+                        'accent-green': '#6BFF9B',
+                        'text-dark': '#2C2C2C',
+                        'text-light': '#F8F8F8',
+                        'card-bg': 'rgba(255, 255, 255, 0.9)',
+                        'overlay-bg': 'rgba(45, 90, 39, 0.8)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-sky-blue via-sage-green to-forest-green min-h-screen font-['Comic_Neue'] overflow-x-hidden">
+    
+    <!-- Floating Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="floating-element absolute top-20 left-10 text-6xl">🌟</div>
+        <div class="floating-element absolute top-40 right-16 text-5xl">📚</div>
+        <div class="floating-element absolute bottom-32 left-20 text-4xl">🎈</div>
+        <div class="floating-element absolute bottom-40 right-32 text-5xl">🌈</div>
+        <div class="floating-element absolute top-1/2 left-8 text-3xl">🦄</div>
+        <div class="floating-element absolute top-1/3 right-8 text-4xl">⭐</div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 bg-gradient-to-r from-forest-green to-sage-green border-b-2 border-sage-green backdrop-blur-sm z-50">
+        <div class="flex justify-between items-center px-4 py-3">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold text-cloud-white" data-lang="title">StoryLand Adventures</h1>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <!-- Language Toggle Button -->
+                <button id="languageToggle" class="nav-btn text-white text-lg px-4 py-2 rounded-full transition-all" title="Toggle Language">
+                    🇺🇸
+                </button>
+                
+                <!-- Login Button -->
+                <button id="navLoginBtn" class="nav-btn text-white text-lg px-4 py-2 rounded-full transition-all" data-lang="login">
+                    🔑 Login
+                </button>
+                
+                <!-- Sign Up Button -->
+                <button id="navSignupBtn" class="nav-btn text-white text-lg px-4 py-2 rounded-full transition-all" data-lang="signup">
+                    ✨ Sign Up
+                </button>
+                
+                <!-- User Badge - Hidden initially -->
+                <div id="userBadge" class="hidden bg-card-bg border-2 border-sage-green rounded-full px-4 py-2 flex items-center space-x-2 backdrop-blur-sm">
+                    <span id="userName" class="text-text-dark font-semibold">👤 Guest</span>
+                    <span id="userStars" class="text-forest-green font-bold">⭐ 0</span>
+                    <button id="logoutBtn" class="ml-2 text-accent-red hover:text-red-700 transition-colors" title="Logout" data-lang="logout">
+                        🚪
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-24">
+        
+        <!-- Home Page -->
+        <section id="homePage" class="min-h-screen px-4">
+            <!-- Hero Section -->
+            <section class="pt-24 pb-12 px-4 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-sage-green via-forest-green to-warm-brown bg-clip-text text-transparent" data-lang="hero-title">
+                        Welcome to StoryLand Adventures!
+                    </h2>
+                    <p class="text-xl md:text-2xl text-text-dark mb-8 max-w-2xl mx-auto" data-lang="hero-subtitle">
+                        Discover magical stories, learn new words, and earn stars as you read! Perfect for children aged 4-10.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <button id="watchDemo" class="action-btn bg-gradient-to-r from-sage-green to-forest-green text-white px-8 py-4 text-xl font-bold rounded-2xl hover:scale-105 transition-transform" data-lang="watch-demo">
+                            🎬 Watch Demo
+                        </button>
+                        <button id="getStories" class="action-btn bg-gradient-to-r from-accent-blue to-accent-purple text-white px-8 py-4 text-xl font-bold rounded-2xl hover:scale-105 transition-transform" data-lang="get-stories">
+                            📚 Start Reading
+                        </button>
+                    </div>
+                    
+                    <!-- Rating Bubble -->
+                    <div class="mt-8 inline-block bg-card-bg border-2 border-sage-green rounded-full px-6 py-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">⭐</span>
+                            <span class="text-lg font-bold text-text-dark" data-lang="rating-text">Rated 5 Stars by Parents</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Stories Carousel -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-['Fredoka_One'] text-center text-text-dark mb-8">🌟 Featured Adventures 🌟</h3>
+                <div class="overflow-x-auto pb-4">
+                    <div class="flex space-x-6 px-4 min-w-max">
+                        <div class="story-card rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all cursor-pointer">
+                            <div class="text-6xl mb-4">🐰</div>
+                            <h4 class="text-xl font-bold text-text-dark mb-2">Bunny's Big Day</h4>
+                            <div class="text-forest-green font-bold">⭐⭐⭐</div>
+                        </div>
+                        <div class="story-card rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all cursor-pointer">
+                            <div class="text-6xl mb-4">🐻</div>
+                            <h4 class="text-xl font-bold text-text-dark mb-2">Bear's Honey Hunt</h4>
+                            <div class="text-forest-green font-bold">⭐⭐</div>
+                        </div>
+                        <div class="story-card rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all cursor-pointer">
+                            <div class="text-6xl mb-4">🦊</div>
+                            <h4 class="text-xl font-bold text-text-dark mb-2">Fox's Clever Trick</h4>
+                            <div class="text-forest-green font-bold">⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stories Page -->
+        <div id="storiesPage" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Page Header -->
+                <div class="text-center mb-8">
+                    <h1 id="storiesTitle" class="text-4xl font-bold text-gray-800 mb-4">Story Library</h1>
+                    <p id="storiesSubtitle" class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Choose your next adventure! Each story teaches new words and earns you stars.
+                    </p>
+                </div>
+                
+                <!-- Language Filter -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-gray-100 rounded-lg p-1">
+                        <button id="filterEnglish" class="px-4 py-2 rounded-md transition-colors filter-btn active" data-lang="filter-english">
+                            🇺🇸 English
+                        </button>
+                        <button id="filterArabic" class="px-4 py-2 rounded-md transition-colors filter-btn" data-lang="filter-arabic">
+                            🇵🇸 العربية
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Stories Container -->
+                <div id="storiesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Story cards will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Page -->
+        <div id="progressPage" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <div class="max-w-2xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">📊 Your Progress</h1>
+                    
+                    <!-- Progress Summary -->
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <div id="progressSummary" class="space-y-3">
+                            <!-- Progress items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temporary Test Button for Debugging -->
+        <button id="testModalBtn" class="fixed top-32 right-4 bg-red-500 text-white px-4 py-2 rounded z-50">
+            Test Modal
+        </button>
+        
+        <!-- Simple Debug Button -->
+        <button id="debugBtn" class="fixed top-32 left-4 bg-blue-500 text-white px-4 py-2 rounded z-50">
+            Debug App
+        </button>
+        
+        <!-- Dashboard Bar - Hidden initially -->
+        <div id="dashboardBar" class="hidden fixed top-20 left-4 right-4 bg-card-bg border-2 border-sage-green rounded-xl p-4 backdrop-blur-sm z-30 shadow-lg">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-bold text-text-dark" data-lang="dashboard-welcome">Welcome back!</h3>
+                    <p class="text-text-dark" data-lang="dashboard-encouragement">Keep reading to earn more stars!</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold text-forest-green">⭐ <span id="totalStars">0</span></div>
+                    <div class="text-sm text-warm-brown" data-lang="dashboard-completed">Completed: <span id="completedStories">0</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Story Reader Page -->
+        <div id="readerPage" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Back Button -->
+                <button id="backToStories" class="mb-6 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                    ← Back to Stories
+                </button>
+                
+                <!-- Story Content -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <!-- Story Title -->
+                    <h1 id="storyTitle" class="text-3xl font-bold text-gray-800 mb-6 text-center">Story Title</h1>
+                    
+                    <!-- Story Illustration -->
+                    <div id="storyIllustration" class="text-6xl text-center mb-6">📚</div>
+                    
+                    <!-- Story Text -->
+                    <div id="storyText" class="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-4xl mx-auto">
+                        Story content will be loaded here...
+                    </div>
+                    
+                    <!-- Vocabulary Section -->
+                    <div class="mb-8">
+                        <h3 id="vocabularyTitle" class="text-xl font-bold text-gray-800 mb-4 text-center">New Words to Learn</h3>
+                        <div id="vocabularyWords" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Vocabulary words will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Audio Controls -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 id="audioControlsTitle" class="text-lg font-semibold text-gray-800 mb-4 text-center">Audio Controls</h3>
+                        <div class="flex justify-center items-center space-x-4">
+                            <button id="previousBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                ⏮️ Previous
+                            </button>
+                            <button id="playPauseBtn" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-lg">
+                                ▶️ Play
+                            </button>
+                            <button id="nextBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                ⏭️ Next
+                            </button>
+                            <button id="repeatBtn" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
+                                🔁 Repeat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <div class="max-w-2xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">👤 Your Profile</h1>
+                    
+                    <!-- Profile Info -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 mb-6">
+                        <div class="text-center mb-6">
+                            <div class="text-6xl mb-4">👤</div>
+                            <h2 id="profileName" class="text-2xl font-bold text-gray-800">User Name</h2>
+                            <p id="profileAge" class="text-gray-600">Age: Loading...</p>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-blue-50 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-blue-600" data-progress="stars">⭐ 0</div>
+                                <div class="text-sm text-blue-600">Total Stars</div>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 text-center">
+                                <div class="text-2xl font-bold text-green-600" data-progress="completed">📚 0</div>
+                                <div class="text-sm text-green-600">Completed Stories</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="flex justify-center space-x-4">
+                            <button id="switchProfileBtn" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                🔄 Switch Profile
+                            </button>
+                            <button id="logoutBtn" class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                                🚪 Logout
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Summary -->
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">📊 Your Progress</h3>
+                        <div id="progressSummary" class="space-y-3">
+                            <!-- Progress items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav id="bottomNav" class="fixed bottom-0 left-0 right-0 bg-card-bg border-t-2 border-sage-green backdrop-blur-sm z-40">
+        <div class="flex justify-around items-center py-3">
+            <button id="navHome" class="nav-item active">
+                <span class="text-2xl">🏠</span>
+                <span class="text-xs text-text-dark" data-lang="nav-home">Home</span>
+            </button>
+            <button id="navStories" class="nav-item">
+                <span class="text-2xl">📚</span>
+                <span class="text-xs text-text-dark" data-lang="nav-stories">Stories</span>
+            </button>
+            <button id="navProgress" class="nav-item">
+                <span class="text-2xl">⭐</span>
+                <span class="text-xs text-text-dark" data-lang="nav-progress">Progress</span>
+            </button>
+            <button id="navProfile" class="nav-item">
+                <span class="text-2xl">👤</span>
+                <span class="text-xs text-text-dark" data-lang="nav-profile">Profile</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="progressTitle" class="text-2xl font-bold text-gray-800">Your Progress</h2>
+                <button id="closeProgressModal" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    ✕
+                </button>
+            </div>
+            
+            <div id="progressContent" class="space-y-4">
+                <!-- Progress content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="hidden fixed inset-0 bg-overlay-bg backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-card-bg border-2 border-sage-green rounded-2xl p-6 w-full max-w-md backdrop-blur-sm">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-text-dark" data-lang="auth-welcome">Welcome to StoryLand!</h3>
+                <button id="closeAuth" class="close-btn text-2xl hover:scale-110 transition-transform">×</button>
+            </div>
+            
+            <!-- Tab Navigation -->
+            <div class="flex mb-6 border-b-2 border-sage-green">
+                <button id="loginTab" class="flex-1 py-2 px-4 text-center font-semibold text-text-dark border-b-2 border-transparent hover:border-accent-blue transition-colors" data-lang="login-tab">
+                    🔑 Login
+                </button>
+                <button id="signupTab" class="flex-1 py-2 px-4 text-center font-semibold text-text-dark border-b-2 border-transparent hover:border-accent-blue transition-colors" data-lang="signup-tab">
+                    ✨ Sign Up
+                </button>
+            </div>
+            
+            <!-- Login Section -->
+            <div id="loginSection" class="space-y-4">
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="login-username">Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter your username" 
+                           class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                </div>
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="login-pin">4-Digit PIN</label>
+                    <input type="password" id="loginPin" placeholder="Enter your 4-digit PIN" maxlength="4"
+                           class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                </div>
+                <button id="loginSubmitBtn" class="w-full bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold py-3 px-6 rounded-xl hover:scale-105 transition-transform" data-lang="login-submit">
+                    🚀 Login & Start Adventure
+                </button>
+            </div>
+            
+            <!-- Signup Section -->
+            <div id="signupSection" class="hidden space-y-4">
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="signup-name">Child's Name</label>
+                    <input type="text" id="signupName" placeholder="Enter child's name" 
+                           class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                </div>
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="signup-age">Age (4-10 years)</label>
+                    <select id="signupAge" class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                        <option value="" data-lang="select-age">Select age</option>
+                        <option value="4" data-lang="age-4">4 years old</option>
+                        <option value="5" data-lang="age-5">5 years old</option>
+                        <option value="6" data-lang="age-6">6 years old</option>
+                        <option value="7" data-lang="age-7">7 years old</option>
+                        <option value="8" data-lang="age-8">8 years old</option>
+                        <option value="9" data-lang="age-9">9 years old</option>
+                        <option value="10" data-lang="age-10">10 years old</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="signup-pin">4-Digit PIN</label>
+                    <input type="password" id="signupPin" placeholder="Enter 4-digit PIN" maxlength="4"
+                           class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                </div>
+                <div>
+                    <label class="block text-text-dark font-semibold mb-2" data-lang="signup-confirm">Confirm PIN</label>
+                    <input type="password" id="confirmPin" placeholder="Confirm your 4-digit PIN" maxlength="4"
+                           class="w-full px-4 py-3 border-2 border-accent-blue rounded-xl focus:border-forest-green focus:outline-none text-text-dark bg-white/80">
+                </div>
+                <button id="signupSubmitBtn" class="w-full bg-gradient-to-r from-sage-green to-forest-green text-white font-bold py-3 px-6 rounded-xl hover:scale-105 transition-transform" data-lang="signup-submit">
+                    ✨ Create & Start Adventure
+                </button>
+            </div>
+            
+            <!-- Error/Success Messages -->
+            <div id="authMessage" class="hidden mt-4 p-3 rounded-xl text-center font-semibold"></div>
+        </div>
+    </div>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+
+    <!-- Main JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html> 
