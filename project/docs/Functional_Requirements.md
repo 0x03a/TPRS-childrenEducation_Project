@@ -59,8 +59,6 @@ The platform must support four types of logins with distinct access rights:
 - **Gamification**:  
   The system must incorporate badges, points, levels, and streak counters to reward consistency and achievements.
 
-- **Parent or Teacher/Student Engagement Tracking**:  
-  Parents or Teachers should have access to a detailed dashboard showing student progress, quiz results, activity history, and engagement statistics.
 
 ---
 
@@ -80,7 +78,9 @@ The platform must support four types of logins with distinct access rights:
   The interface and learning content must be available in multiple languages (e.g., Arabic, English, Spanish), with an easy toggle option.
 
 - **Localized Content**:  
-  Stories, examples, and cultural references should be adapted for relevance to different regions and dialects (e.g., Palestinian Arabic vs. Egyptian Arabic).
+Adjust stories, examples, and cultural references so they match the culture and way of speaking in a specific place or dialect.
+**Example:** A joke that makes sense in Palestinian Arabic might be rewritten so it makes sense in Egyptian Arabic.
+
 
 ---
 
@@ -122,8 +122,8 @@ The platform must support four types of logins with distinct access rights:
 
 ## 9. Data Usage and AI Training
 
-- **Anonymization**:  
-  All AI training data must be stripped of personally identifiable information (PII) and aggregated to ensure privacy.
+- **Anonymization**: 
+  Make sure all data used to train the AI does not include any personal details that can identify someone, and combine data so individuals can’t be singled out.
 
 - **Restricted Use**:  
   AI insights are strictly for learning optimization and must not be shared with third parties.
